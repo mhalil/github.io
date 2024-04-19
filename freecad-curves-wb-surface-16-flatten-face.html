@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+	<head>
+		<link href="http://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Metadata -->
+	<meta name="description" content="3D Modelleme, Animasyon, Render, Vektör - Raster Grafik İşleme ve Python ile Programlama konularına meraklı Açık Kaynak Hayranı bir Makine Mühendisi">
+	<meta property="og:description" content="3D Modelleme, Animasyon, Render, Vektör - Raster Grafik İşleme ve Python ile Programlama konularına meraklı Açık Kaynak Hayranı bir Makine Mühendisi">
+	<meta property="og:title" content="FreeCAD - Curves WB - Surface - 16 - Flatten face" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="/freecad-curves-wb-surface-16-flatten-face.html" />
+		<meta property="og:image" content="/images/avatar.png" />
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+		<title>mhalil - Programlama ve 3D</title>
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="/theme/css/poole.css" />
+		<link rel="stylesheet" href="/theme/css/hyde.css" />
+		<link rel="stylesheet" href="/theme/css/syntax.css" />
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" crossorigin="anonymous">
+
+		<!-- Feeds -->
+
+		<!-- Analytics -->
+	</head>
+
+	<body class="theme-base-0c">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+
+			<h1>
+				<a href="/">
+					<img class="profile-picture" src="/images/avatar.png">
+					mhalil
+				</a>
+			</h1>
+			<p class="lead"></p>
+			<p class="lead">3D Modelleme, Animasyon, Render, Vektör - Raster Grafik İşleme ve Python ile Programlama konularına meraklı Açık Kaynak Hayranı bir Makine Mühendisi </p>
+			<p></p>
+		</div>
+			<ul class="sidebar-nav">
+					<li><a href="/archives.html">Arşiv</a></li>
+					<li><a href="/categories.html">Kategoriler</a></li>
+					<li><a href="/tags.html">Etiketler</a></li>
+					<li><a href="/pages/blender.html">Blender</a></li>
+					<li><a href="/pages/freecad.html">FreeCAD</a></li>
+					<li><a href="/pages/librecad.html">LibreCAD</a></li>
+					<li><a href="/pages/python.html">Python</a></li>
+					<li><a href="/pages/solvespace.html">Solvespace</a></li>
+			</ul>
+		<nav class="sidebar-social">
+					<a class="sidebar-social-item" href="https://twitter.com/AcikKaynakci" target="_blank">
+						<i class="fa fa-twitter"></i>
+					</a>
+					<a class="sidebar-social-item" href="https://www.artstation.com/mustafahalil" target="_blank">
+						<i class="fa fa-artstation"></i>
+					</a>
+					<a class="sidebar-social-item" href="https://github.com/mhalil" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+			<a class="sidebar-social-item" href="/">
+				<i class="fa fa-rss"></i>
+			</a>
+		</nav>
+			<p class="sidebar-footer">İlmin zekatı %100'dür. Bildiklerizi paylaşın.</p>
+	</div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">FreeCAD - Curves WB - Surface - 16 - Flatten face</h1>
+	<span class="post-date">Cum 19 Nisan 2024</span>
+	<h1><img alt="Flatten_face" src="https://raw.githubusercontent.com/tomate44/CurvesWB/9aac6c2365311724487f79df3343dab90ddcb819/freecad/Curves/resources/icons/flatten.svg"> Flatten face</h1>
+<p><strong>Flatten face</strong> (Düzlemsel Yüzey) komutu, Konik (Kesik koni olmalı, uç kısım sivri olmamalı) ve Silindirik yüzeylerden düz gelişmiş bir yüzey oluşturur. Seçili Yüzeyin UV'sini açar diyebiliriz. Başka bir ifadeyle, seçili yüzeyin düzlemsel haleni üretir.</p>
+<p><strong>Kullanım:</strong> Komutu çalıştırmak için aşağıdaki adımları sırası ile uygulayın:</p>
+<ul>
+<li>Öncelikle bir kesik koni yüzeyi veya silindir yüzeyi seçin. </li>
+<li>Curves araç çubuğunda bulunan ilgili düğmeye basın, ya da</li>
+<li><strong>Curves WB</strong> (Çalışma Tezgahındayken) <strong>Surface</strong> menüsündeki <strong>Flatten face</strong> seçeneğini kullanın.</li>
+</ul>
+<p>Model üzerinden düzleştirmek / UV açılımını yapmak istediğimiz konik ya da silindrik yüzeyi seçiyoruz. Araç çubuğunda bulunan <strong>Flatten face</strong> düğmesine basıyoruz. <strong>Surface</strong> menüsündeki <strong>Flatten face</strong> seçeneğini de kullanabiliriz.
+<img alt="Flatten_face_01" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_01.png"></p>
+<p>Komut çalıştırıldıktan sonra 3D ekranında, seçili yüzey ile temas edecek şekilde, yüzeyin UV açılımı yapılır. Oluşan Yeni Nesne (Flatten) kaynak (seçili) yüzeye teğet olacak şekilde yerleştirilir.
+<img alt="Flatten_face_02" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_02.png"></p>
+<p>Oluşan yeni nesneyi (Flatten), Unsur ağacından seçerek <strong>In Place</strong> ayarını <strong>False</strong> olarak değiştirdiğimizde, <strong>Flatten</strong> nesnesi <strong>XY düzleminde</strong> taşınır.
+<img alt="Flatten_face_03" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_03.png"></p>
+<p>Sahneye, üst görünüşten <strong>XY düzleminden</strong> baktığımzda <strong>Flatten</strong> nesnesini net olarak görebiliriz.
+<img alt="Flatten_face_04" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_04.png"></p>
+<p>Silindrik bir başka yüzeyi seçip <strong>Flatten face</strong> komutunu tekrar çalıştıralım.
+<img alt="Flatten_face_05" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_05.png"></p>
+<p>Oluşan Yeni Nesne (Flatten), varsayılan olarak kaynak yüzeye teğet olacak şekilde yerleştiriliyor. Dikkat ederseniz bu kez oluşan Flatten Nesnesi sadece çizgilere değil aynı zamanda yüzeye de sahip. (<em>Flatten face nesenesinin neden çizgiden ya da yüzeyden oluştuğunun sebebini bilemiyorum.</em>)
+<img alt="Flatten_face_06" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_06.png"></p>
+<p>Oluşan <strong>Flatten001</strong> nesnesini seçip extrude komutu ile katılamak mümkün.
+<img alt="Flatten_face_07" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_07.png"></p>
+<p>Komutu, bir diğer çizim üzerinde de deneyelim. Silindrik bir yüzey seçip komutu çalıştırıyorum.
+<img alt="Flatten_face_08" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_08.png"></p>
+<p>Sonuç ortada;
+<img alt="Flatten_face_09" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_09.png"></p>
+<p>Oluşan Yeni Nesne (Flatten) kaynak yüzeye teğet olacak şekilde (YZ Düzlemine) yerleştirildi.
+<img alt="Flatten_face_10" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_10.png"></p>
+<p><strong>Flatten</strong> nesnesini seçip <strong>Draft Çalışma Tezgahı</strong>ndaki <strong>Downgrade</strong> komutu ile tüm parçaları <strong>Edge (Kenar çizgisi)</strong> haline dönüştürdük. 
+<img alt="Flatten_face_11" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_11.png"></p>
+<p>Tüm kenar çizgilerini (edge) seçip <strong>Upgrade</strong> komutunu çalıştırarak seçili çizgilerden temas halinde olanları <strong>Wire (kablo çizgisi)</strong> nesnesine dönüştürüyoruz.
+<img alt="Flatten_face_12" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_12.png"></p>
+<p>İç kısımdakiler hariç, kablo çizgisini (Wire) seçip <strong>Upgrade</strong> komutu ile seçimi <strong>yüzey nesnesine</strong> dönüştürüyoruz.
+<img alt="Flatten_face_13" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_13.png"></p>
+<p>Aynı işlemi, iç kısımdaki kablo çizgilerine de (wire'lara) uygulayarak yeni yüzeyler elde ediyoruz. <strong>Part Çalışma Tezgahı</strong>ndaki <strong>Kes (Cut)</strong> komutu yardımıyla Yüzeyleri birbirinden çıkararak boşluk oluşturuyoruz.
+<img alt="Flatten_face_14" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_14.png"></p>
+<p>Boşluklu düzlemsel Yüzeyi seçerek <strong>Part Çalışma Tezgahı</strong>ndaki <strong>Uzat / Katıla (Extrude)</strong> komutunu çalıştırıyoruz.
+<img alt="Flatten_face_15" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_15.png"></p>
+<p>Sonuç olarak Düzlemsel nesneye <strong>hacim</strong> kazandırarak nesneyi <strong>3. boyut</strong>a kavuşturuyoruz.
+<img alt="Flatten_face_16" src="../../images/freecad/curves_wb/surfaces_menu/Flatten_face_16.png"></p>
+<p><a href="freecad-curves-wb-surface-00-menu-komutlari.html">&lt;&lt;&lt; Surfaces Menü Komutlarına Ait Sayfaya Dön</a></p>
+</div>
+		</div>
+	</body>
+</html>
