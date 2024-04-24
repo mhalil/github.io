@@ -83,7 +83,7 @@
 <p>Bu komut, bir ucundan bir süpürme yoluna temas eden ve diğer ucunda bir merkez noktada buluşan bir profil listesini süpürmek için kullanılır. Yani süpürülecek olan profil, yol ile temas etmelidir. Profilin diğer uç noktası ise döndürme noktasını oluşturacaktır. O nedenle birden fazla profil seçilerek Rotation Sweep komutu çalıştırılacaksa, tüm profillerin döndürme merkezinin temas halinde olması daha doğru sonuçlar üretme adına faydalı olacak diye düşünüyorum.</p>
 <p><strong>Kullanım:</strong> <strong>Rotation Sweep (Döndürerek Süpür)</strong> Komutu çalıştırmak için aşağıdaki adımları sırası ile uygulayın:</p>
 <ul>
-<li>3D Görünümünde <strong>Öncelikle bir süpürme yolu (path)</strong>, ardından döndürülerek süpürülecek olan <strong>profil ya da profilleri</strong> seçin. (Süpürme yolu, istenen eskiz çizgilerini JoinCurve'üdür. Yani nesne tek parça olmalıdır. 3D ekranda yolun bir kısmını seçtiğinizde tüm nesne seçili olmalıdır.)</li>
+<li>3D Görünümünde <strong>Öncelikle bir süpürme yolu (path)</strong>, ardından döndürülerek süpürülecek olan <strong>profil ya da profilleri</strong> seçin. (Birlikte seçim için <code>CTRL</code> tuşunu kullanın) (Süpürme yolu, istenen eskiz çizgilerini <strong>JoinCurve</strong>'üdür. Yani nesne tek parça olmalıdır. 3D ekranda yolun bir kısmını seçtiğinizde tüm nesne seçili olmalıdır.)</li>
 <li>Curves araç çubuğunda bulunan ilgili düğmeye basın, ya da</li>
 <li><strong>Curves WB</strong> (Çalışma Tezgahındayken) <strong>Surface</strong> menüsündeki <strong>Rotation Sweep</strong> seçeneğini kullanın.</li>
 </ul>
@@ -132,35 +132,73 @@ Sonuç karşımızda ve tam istediğimiz gibi. Birbirine temas eden 3 eğriden o
 Görüntüyü döndürerek yüzeyimizi inceleyelim. Harika değil mi?
 <img alt="Rotation_Sweep_15" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_15.png"></p>
 <h3>2. Çalışma;</h3>
-<p><img alt="Rotation_Sweep_16" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_16.png">
+<p>Elimizde 3 adet eskiz mevcut. Herbir eskizde <strong>B-Spline</strong> nesneleri var. Bu nesnelerden <strong>Sketch - yol (path)</strong> isimli eskizdeki b-spline nesnesi iki adet b-spline eğrisindenoluşmaktadır. 
+<img alt="Rotation_Sweep_16" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_16.png"></p>
+<p><strong>Sketch - yol (path)</strong> isimli eskiz içeriğindeki <strong>b-spline</strong> nesnesi aşağıdaki gibidir. Üst Görünüm - XY Düzlemi;
 <img alt="Rotation_Sweep_17" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_17.png">
+<strong>Sketch001 - Profil_1</strong> isimli eskiz içeriğindeki <strong>b-spline</strong> nesnesi aşağıdaki gibidir. Ön Görünüm - XZ Düzlemi;
 <img alt="Rotation_Sweep_18" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_18.png">
+<strong>Sketch002 - Profil_2</strong> isimli eskiz içeriğindeki <strong>b-spline</strong> nesnesi aşağıdaki gibidir. Sağ Yan Görünüm - YZ Düzlemi;
 <img alt="Rotation_Sweep_19" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_19.png">
+Aşağıda şekilde yeşil renk ile işaretli eğrilerden önce aşağıdaki (XY düzlemindeki) yolu, ardından <code>CTRL</code> tuşuna basılı tutarak sol taraftaki (XZ düzlemindeki) eğriyi seçerek <strong>Rotation Sweep</strong> komutunu çalıştıralım. 
 <img alt="Rotation_Sweep_20" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_20.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir.
 <img alt="Rotation_Sweep_21" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_21.png">
+Modeli çevirip diğer taraftan bakalım;
 <img alt="Rotation_Sweep_22" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_22.png">
+Şimdi aşağıdaki resimde işaretli eğrilerden önce yol eğrisini, ardından profil eğrisini seçerek <strong>Rotation Sweep</strong> komutunu çalıştıralım. 
 <img alt="Rotation_Sweep_23" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_23.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir.
 <img alt="Rotation_Sweep_24" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_24.png">
+Modeli çevirip diğer taraftan bakalım;
 <img alt="Rotation_Sweep_25" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_25.png">
+Son oluşturduğum <strong>Rotation_Sweep001</strong> nesnesini siliyorum. Biraz önceki gibi önce yol ve ardından profil eğrisini seçtikten sonra, <strong>Rotation_Sweep</strong> nesnesinin açık uçlarındaki eğrileri de seçime dahil ederek (resimdeki tüm yeşil eğrileri seçerek) <strong>Rotation Sweep</strong> komutunu çalıştıralım. 
 <img alt="Rotation_Sweep_26" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_26.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir. <strong>Rotation_Sweep</strong> nesnesi ile <strong>Rotation_Sweep001</strong> nesnesi birbiri ile tam olarak örtüştü.
 <img alt="Rotation_Sweep_27" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_27.png">
-<img alt="Rotation_Sweep_28" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_28.png">
+Modeli çevirip diğer taraftan bakalım; Oluşan Yüzeyler arasında boşluk kalmadı.
+<img alt="Rotation_Sweep_28" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_28.png"></p>
+<h3>3. Çalışma;</h3>
+<p>3 adet <strong>Freehand_BSpline</strong> nesnesinden oluşan bir çizimimiz mevcut. Bunlardan önce yolu (<strong>Freehand_BSpline001</strong>),
 <img alt="Rotation_Sweep_29" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_29.png">
+Ardından profili (<strong>Freehand_BSpline002</strong>) seçelim. 
 <img alt="Rotation_Sweep_30" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_30.png">
+Sonrasında  <strong>Rotation Sweep</strong> komutunu çalıştıralım.
 <img alt="Rotation_Sweep_31" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_31.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir.
 <img alt="Rotation_Sweep_32" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_32.png">
+Şimdi ise, XY Düzlemindeki ikinci eğri olan <strong>Freehand_BSpline</strong> nesnesini ve <strong>Rotation_Sweep</strong> nesnesi açık uçlarından birine ait eğriyi seçerek <strong>Rotation Sweep</strong> komutunu çalıştıralım.
 <img alt="Rotation_Sweep_33" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_33.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir. Gördüğünüz gibi <strong>Rotation_Sweep</strong> nesnesi ile <strong>Rotation_Sweep001</strong> nesnesi arasında bir boşluk kaldı. 
 <img alt="Rotation_Sweep_34" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_34.png">
+<strong>Rotation_Sweep001</strong> nesnesinin <strong>Input Shapes</strong> başlığı altında bulunan <strong>Profiles</strong> özelliğini kullanarak bu açığı kapatmaya çalışalım. (<strong>Profiles</strong> özelliğinin yanında bulunan üç nokta butonuna basarak <strong>Link</strong> penceresini açıyor ve 3D ekranından <strong>Rotation_Sweep</strong> nesnesinin açık  ucunu seçiyoruz.)
 <img alt="Rotation_Sweep_35" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_35.png">
-<img alt="Rotation_Sweep_36" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_36.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir. <strong>Rotation_Sweep</strong> ve <strong>Rotation_Sweep</strong> nesnesi kusursuz olarak birleşmiş oldu.
+<img alt="Rotation_Sweep_36" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_36.png"></p>
+<h3>4. Çalışma;</h3>
+<p>5 adet <strong>Freehand_BSpline</strong> nesnesinden oluşan bir çizimimiz mevcut. 
 <img alt="Rotation_Sweep_37" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_37.png">
+Eğrilerden <strong>Yol nesnesi (Freehand_BSpline - Close Path)</strong> kapalı bir eğridir. (Eğrinin <strong>Periodic</strong> özelliği <strong>true</strong> olarak ayarlandığı için eğri otomatik olarak kapandı.)
+Önce yol eğrisinin ardından profil eğrisini seçip <strong>Rotation Sweep</strong> komutunu çalıştıralım.
 <img alt="Rotation_Sweep_38" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_38.png">
+Elde ettiğimiz yüzeyin izometrik görüntüsü aşağıdaki gibidir.
 <img alt="Rotation_Sweep_39" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_39.png">
+Modele Sağ Yan, Üst ve Ön görünüşten baktığımızda, Oluşan yüzeyin diğer eğrilerle irtibatının olmadığını net olarak görüyoruz.<br>
 <img alt="Rotation_Sweep_40" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_40.png">
+Şimdi de yol eğrisinin ardından 2 adet profil eğrisi seçip <strong>Rotation Sweep</strong> komutunu çalıştıralım.
 <img alt="Rotation_Sweep_41" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_41.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir. <strong>Rotation_Sweep</strong> nesnesinin <strong>Trim Path (Yolu Kırp)</strong> özelliği varsayıla olarak <strong>true (doğru)</strong>şeklinde ayarlandığı için, döndürerek süpürme işlemi, seçili 2 profille sınırlı kaldı, tüm yol boyunca devam etmedi. 
 <img alt="Rotation_Sweep_42" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_42.png">
+<strong>Trim Path (Yolu Kırp)</strong> özelliğini <strong>false (yanlış)</strong> olarak değiştirdiğimizde ise oluşan yüzey, yol boyunca devam ettiriliyor.
 <img alt="Rotation_Sweep_43" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_43.png">
-<img alt="Rotation_Sweep_44" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_44.png"></p>
+Modele Üst, Sağ Yan ve Ön görünüşten baktığımızda, Oluşan yüzeyin dönüş merkezi etrafından ve seçili profiller baz alınarak devam ettirildiğini ve diğer (seçilmeyen) eğrilerle hâlâ irtibatının olmadığını görüyoruz.
+<img alt="Rotation_Sweep_44" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_44.png">
+Son olarak ta, önce yol eğrisini, ardından tüm irtibatlı eğrileri seçerek <strong>Rotation Sweep</strong> komutunu çalıştırıyoruz.
+<img alt="Rotation_Sweep_45" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_45.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir.
+<img alt="Rotation_Sweep_46" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_46.png">
+Modele Ön, Sağ Yan ve Üst görünüşten baktığımızda, Oluşan yüzeyin dönüş merkezi etrafında ve tüm seçili profiller baz alınarak üretildiği için tüm eğrilerle irtibatlı olduğunu görüyoruz.
+<img alt="Rotation_Sweep_47" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_47.png"></p>
 <p><a href="freecad-curves-wb-surface-00-menu-komutlari.html">&lt;&lt;&lt; Surfaces Menü Komutlarına Ait Sayfaya Dön</a></p>
 </div>
 		</div>
