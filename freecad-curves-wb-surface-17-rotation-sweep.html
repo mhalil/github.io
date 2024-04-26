@@ -199,6 +199,29 @@ Elde ettiğimiz yüzey aşağıda göründüğü gibidir.
 <img alt="Rotation_Sweep_46" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_46.png">
 Modele Ön, Sağ Yan ve Üst görünüşten baktığımızda, Oluşan yüzeyin dönüş merkezi etrafında ve tüm seçili profiller baz alınarak üretildiği için tüm eğrilerle irtibatlı olduğunu görüyoruz.
 <img alt="Rotation_Sweep_47" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_47.png"></p>
+<h3>5. Çalışma;</h3>
+<p><strong>Freehand_BSpline001</strong> (yol) eğrisi ve bu eğriye temas eden <strong>Freehand_BSpline002 - Profil</strong> eğrisini kullanarak <strong>Rotation Sweep</strong> komutu ile yüzey oluşturmak isteyelim.
+<img alt="Rotation_Sweep_48" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_48.png">
+Önce yolu ardından profili seçip <strong>Rotation Sweep</strong> komutunu çalıştırıyoruz.
+<img alt="Rotation_Sweep_49" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_49.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir. Profil, tüm yol eğrisi boyunca döndürülerek süpürüldü ve yüzey oluştu.
+<img alt="Rotation_Sweep_50" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_50.png">
+<strong>Freehand_BSpline001</strong> (yol) eğrisini seçerek <strong>SplitCurve</strong> komutunu çalıştırıyoruz.
+<img alt="Rotation_Sweep_51" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_51.png">
+Unsur ağacına <strong>SplitCurve</strong> isimli yeni bir unsur eklendi. 
+<img alt="Rotation_Sweep_52" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_52.png">
+<strong>SplitCurve</strong> nesnesini seçip özelliklerine baktığımızda yol profilin, yay uzunluğunun tam orta noktasından (%50) iki parçaya bölündüğünü görebiliriz.
+<img alt="Rotation_Sweep_53" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_53.png">
+Unsur ağacındaki <strong>SplitCurve</strong> nesnesini seçerek özellikleri aşağıdaki şekilde düzenleyelim;
+* <strong>Values</strong> : []
+* <strong>Cutting Object</strong> : Freehand_BSpline002 - Profil
+<img alt="Rotation_Sweep_54" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_54.png">
+Gördüğünüz gibi <strong>Freehand_BSpline001</strong> (yol) eğrisi, <strong>Freehand_BSpline002 - Profil</strong> eğrisi ile temas ettiği noktadan 2 parçaya bölünmüş oldu.
+<img alt="Rotation_Sweep_55" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_55.png">
+İki parçaya ayrılmış olan eğrinin bir parçasını seçip ardından profil eğrisini seçerek  <strong>Rotation Sweep</strong> komutunu çalıştıralım.
+<img alt="Rotation_Sweep_56" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_56.png">
+Görüldüğü üzere profil sadece seçili eğri (yol) <strong>parçası</strong> boyunca döndürülüp süpürülerek yüzey oluşturuldu. Profil eğrisini, yol eğrisine temas eden noktasının yerini değiştirerek oluşan yüzeyi düzenleyebiliriz. 
+<img alt="Rotation_Sweep_57" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_57.png"></p>
 <p><a href="freecad-curves-wb-surface-00-menu-komutlari.html">&lt;&lt;&lt; Surfaces Menü Komutlarına Ait Sayfaya Dön</a></p>
 </div>
 		</div>
