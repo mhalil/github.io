@@ -132,7 +132,7 @@ Sonuç karşımızda ve tam istediğimiz gibi. Birbirine temas eden 3 eğriden o
 Görüntüyü döndürerek yüzeyimizi inceleyelim. Harika değil mi?
 <img alt="Rotation_Sweep_15" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_15.png"></p>
 <h3>2. Çalışma;</h3>
-<p>Elimizde 3 adet eskiz mevcut. Herbir eskizde <strong>B-Spline</strong> nesneleri var. Bu nesnelerden <strong>Sketch - yol (path)</strong> isimli eskizdeki b-spline nesnesi iki adet b-spline eğrisindenoluşmaktadır. 
+<p>Elimizde 3 adet eskiz mevcut. Herbir eskizde <strong>B-Spline</strong> nesneleri var. Bu nesnelerden <strong>Sketch - yol (path)</strong> isimli eskizdeki b-spline nesnesi <strong>iki adet b-spline</strong> eğrisinden oluşmaktadır. 
 <img alt="Rotation_Sweep_16" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_16.png"></p>
 <p><strong>Sketch - yol (path)</strong> isimli eskiz içeriğindeki <strong>b-spline</strong> nesnesi aşağıdaki gibidir. Üst Görünüm - XY Düzlemi;
 <img alt="Rotation_Sweep_17" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_17.png">
@@ -218,10 +218,45 @@ Unsur ağacındaki <strong>SplitCurve</strong> nesnesini seçerek özellikleri a
 <img alt="Rotation_Sweep_54" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_54.png">
 Gördüğünüz gibi <strong>Freehand_BSpline001</strong> (yol) eğrisi, <strong>Freehand_BSpline002 - Profil</strong> eğrisi ile temas ettiği noktadan 2 parçaya bölünmüş oldu.
 <img alt="Rotation_Sweep_55" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_55.png">
-İki parçaya ayrılmış olan eğrinin bir parçasını seçip ardından profil eğrisini seçerek  <strong>Rotation Sweep</strong> komutunu çalıştıralım.
+İki parçaya ayrılmış olan <strong>eğrinin bir parçasını</strong> seçip ardından profil eğrisini seçerek  <strong>Rotation Sweep</strong> komutunu çalıştıralım.
 <img alt="Rotation_Sweep_56" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_56.png">
 Görüldüğü üzere profil sadece seçili eğri (yol) <strong>parçası</strong> boyunca döndürülüp süpürülerek yüzey oluşturuldu. Profil eğrisini, yol eğrisine temas eden noktasının yerini değiştirerek oluşan yüzeyi düzenleyebiliriz. 
 <img alt="Rotation_Sweep_57" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_57.png"></p>
+<h3>6. Çalışma;</h3>
+<p>Bu çalışmada, <strong>Rotation Sweep</strong> komutunun <strong>Face Support (Yüzey Desteği)</strong> özelliğini inceleyeceğiz.Öncelikle sahnedeki nesneleri sırayla inceleyelim. Elimizde bir adet Elips (<strong>Ellipse</strong>) nesnesi var. Üst bakıştan baktığımızda, elips aşağıdaki gibi görünüyor.
+<img alt="Rotation_Sweep_58" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_58.png">
+<strong>Offset2D</strong> komutu ile elipsin 3 mm büyük kopyasını oluşturuyor ve Z ekseninde bir miktar yukarı taşıyoruz.<br>
+<img alt="Rotation_Sweep_59" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_59.png">
+<strong>Ellipse</strong> ve <strong>Offset2D</strong> nesneleri, Ön (front) görünümden aşağıdaki şekilde görünüyor. 
+<img alt="Rotation_Sweep_60" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_60.png">
+<strong>Ruled Surface</strong> komutu yardımıyla, <strong>Ellipse</strong> ve <strong>Offset2D</strong> nesnelerinden bir yüzey oluşturuyoruz.
+<img alt="Rotation_Sweep_61" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_61.png">
+Oluşan Yüzey, Ön görünümden aşağıdaki şekilde görünüyor.
+<img alt="Rotation_Sweep_62" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_62.png">
+<strong>Ellipse</strong> ve <strong>Offset2D</strong> nesnelerine temas edecek şekilde iki ayrı eskiz çiziyoruz. (<strong>Sketch</strong> ve <strong>Sketch001</strong>)
+<img alt="Rotation_Sweep_63" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_63.png">
+<strong>Sketch</strong> ve <strong>Sketch001</strong> Eskizleri birden fazla eğri parçasına sahip olduğu için <strong>Rotation Sweep</strong> komutunda profil olarak seçildiklerinde sorun çıkabilir. Bu sorunun önüne geçmek için <strong>Sketch</strong> ve <strong>Sketch001</strong> nesnelerine ayrı ayrı <strong>JoinCurve</strong> komutunu uygulayarak, eskiz içerisindeki çizgi, yay, eğir, ...vb parçaları birleştiriyor ve tek bir eğri nesnesi elde ediyoruz. (<strong>JoinCurve001</strong> ve <strong>JoinCurve002</strong> eğrileri aşağıda mor renk ile görünmektedir.) 
+<img alt="Rotation_Sweep_64" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_64.png">
+Önce <strong>Ellipse</strong> nesnesini (yol olarak) ardından <strong>JoinCurve001</strong> ve <strong>JoinCurve002</strong> eğrilerini (profil olarak) seçerek, <strong>Rotation Sweep</strong> komutunu çalıştıralım.qqq
+<img alt="Rotation_Sweep_65" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_65.png">
+Elde ettiğimiz yüzey aşağıda göründüğü gibidir. Profiller, ortak temas noktaları etrafında döndürülerek kendi aralarındaki eğri boyunca süpürüldü ve yüzey oluştu.
+<img alt="Rotation_Sweep_66" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_66.png">
+<strong>Rotation_Sweep</strong> nesnesi seçilerek, <strong>Trim Path (Yolu Kırp)</strong> özelliği <strong>false</strong> olarak ayarlıyoruz. Böylece, oluşan yüzeyin tüm yol eğrisi boyunca süpürülerek yüzey oluşturmasını sağlamış oluyoruz.
+<img alt="Rotation_Sweep_67" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_67.png">
+Gizlemiş olduğumuz <strong>Ruled _Surface</strong> nesnesini görünür hale getiriyoruz.
+<img alt="Rotation_Sweep_68" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_68.png">
+Oluşan yüzeyin (<strong>Rotation_Sweep</strong> nesnesi) <strong>Ruled _Surface</strong> nesnesi ile olan irtibatını aşağıdaki resimden görebilirsiniz. <strong>Rotation_Sweep</strong> nesnesi ön görünümde, <strong>Ruled _Surface</strong> nesnesine teğet ancak diğer bakış açılarında bu tür bir ilişki mevcut değil.
+<img alt="Rotation_Sweep_69" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_69.png">
+<strong>Rotation_Sweep</strong> nesnesine <strong>Face Support (Yüzey Desteği)</strong> özelliği kazandırmak için Özellikler panelinde <strong>Face Support</strong> özelliğinin yanındaki <strong>üç nokta butonuna</strong> <code>...</code> tıklıyoruz.
+<img alt="Rotation_Sweep_70" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_70.png">
+Açılan <strong>Link (Bağlantı)</strong> penceresinden, <strong>Ruled _Surface</strong> nesnesini seçip <strong>Tamam</strong> butonuna basıyoruz.
+<img alt="Rotation_Sweep_71" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_71.png">
+Artık <strong>Rotation_Sweep</strong> nesnesi, <strong>Ruled _Surface</strong> nesnesine teğet olacak şekilde biçim kazanmış oldu.
+<img alt="Rotation_Sweep_72" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_72.png">
+Yüzeyin yeni şeklini aşağıdaki resimden inceleyebilirsiniz. 
+<img alt="Rotation_Sweep_73" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_73.png">
+İsterseniz <strong>IsoCurve</strong> komutu ile <strong>Rotation_Sweep</strong> nesnesine UV yönelimli bir kafes yapısı uygulayabilirsiniz. 
+<img alt="Rotation_Sweep_74" src="../../images/freecad/curves_wb/surfaces_menu/Rotation_Sweep_74.png"></p>
 <p><a href="freecad-curves-wb-surface-00-menu-komutlari.html">&lt;&lt;&lt; Surfaces Menü Komutlarına Ait Sayfaya Dön</a></p>
 </div>
 		</div>
