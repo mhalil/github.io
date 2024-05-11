@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+	<head>
+		<link href="http://gmpg.org/xfn/11" rel="profile">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+		<!-- Metadata -->
+	<meta name="description" content="3D Modelleme, Animasyon, Render, Vektör - Raster Grafik İşleme ve Python ile Programlama konularına meraklı Açık Kaynak Hayranı bir Makine Mühendisi">
+	<meta property="og:description" content="3D Modelleme, Animasyon, Render, Vektör - Raster Grafik İşleme ve Python ile Programlama konularına meraklı Açık Kaynak Hayranı bir Makine Mühendisi">
+	<meta property="og:title" content="glob Modülü" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="/glob-modulu.html" />
+		<meta property="og:image" content="/images/avatar.png" />
+
+		<!-- Enable responsiveness on mobile devices-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+		<title>mhalil - Programlama ve 3D</title>
+
+		<!-- CSS -->
+		<link href="//fonts.googleapis.com/" rel="dns-prefetch">
+		<link href="//fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic|Abril+Fatface|PT+Sans:400,400italic,700&amp;subset=latin,latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="/theme/css/poole.css" />
+		<link rel="stylesheet" href="/theme/css/hyde.css" />
+		<link rel="stylesheet" href="/theme/css/syntax.css" />
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" crossorigin="anonymous">
+
+		<!-- Feeds -->
+
+		<!-- Analytics -->
+	</head>
+
+	<body class="theme-base-0c">
+<div class="sidebar">
+	<div class="container sidebar-sticky">
+		<div class="sidebar-about">
+
+			<h1>
+				<a href="/">
+					<img class="profile-picture" src="/images/avatar.png">
+					mhalil
+				</a>
+			</h1>
+			<p class="lead"></p>
+			<p class="lead">3D Modelleme, Animasyon, Render, Vektör - Raster Grafik İşleme ve Python ile Programlama konularına meraklı Açık Kaynak Hayranı bir Makine Mühendisi </p>
+			<p></p>
+		</div>
+			<ul class="sidebar-nav">
+					<li><a href="/archives.html">Arşiv</a></li>
+					<li><a href="/categories.html">Kategoriler</a></li>
+					<li><a href="/tags.html">Etiketler</a></li>
+					<li><a href="/pages/blender.html">Blender</a></li>
+					<li><a href="/pages/freecad.html">FreeCAD</a></li>
+					<li><a href="/pages/librecad.html">LibreCAD</a></li>
+					<li><a href="/pages/python.html">Python</a></li>
+					<li><a href="/pages/solvespace.html">Solvespace</a></li>
+			</ul>
+		<nav class="sidebar-social">
+					<a class="sidebar-social-item" href="https://twitter.com/AcikKaynakci" target="_blank">
+						<i class="fa fa-twitter"></i>
+					</a>
+					<a class="sidebar-social-item" href="https://www.artstation.com/mustafahalil" target="_blank">
+						<i class="fa fa-artstation"></i>
+					</a>
+					<a class="sidebar-social-item" href="https://github.com/mhalil" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+			<a class="sidebar-social-item" href="/">
+				<i class="fa fa-rss"></i>
+			</a>
+		</nav>
+			<p class="sidebar-footer">İlmin zekatı %100'dür. Bildiklerizi paylaşın.</p>
+	</div>
+</div>		<div class="content container">
+<div class="post">
+	<h1 class="post-title">glob Modülü</h1>
+	<span class="post-date">Cts 11 Mayıs 2024</span>
+	<h1>glob Modülü</h1>
+<p><code>glob</code>, Python’da belirli bir dizin (klasör) içindeki dosyaları listelememizi sağlayan bir kütüphane/modüldür. Bu modül Unix kabuğu tarafından kullanılan kurallara göre belirtilen bir kalıpla eşleşen tüm yol adlarını bulur, ancak sonuçlar rastgele sırayla döndürülür. Tilde (<code>~</code>) işareti genişletmesi yapılmaz, ancak <code>*, ?</code> ve <code>[]</code> ile ifade edilen karakter aralıkları doğru şekilde eşleştirilir. Bu işlem <code>os.scandir()</code> ve <code>fnmatch.fnmatch()</code> fonksiyonlarının birlikte kullanılmasıyla gerçekleştirilir, bir alt kabuğun çağrılmasıyla değil.</p>
+<p>Bu modülü kullanırken filtreleme yaparak, sadece istenilen dosyaların listelenmesini de sağlayabiliyoruz. Aşağıda, bu konuyla alakalı örnekler bulunmaktadır.</p>
+<p>Nokta (<code>.</code>) ile başlayan dosyaların, <code>fnmatch.fnmatch()</code> veya <code>pathlib.Path.glob()</code>'un aksine, yalnızca nokta ile başlayan kalıplarla eşleştirilebileceğini unutmayın. (Tilde ve kabuk değişkeni genişletmesi için <code>os.path.expanduser()</code> ve <code>os.path.expandvars()</code> kullanın).</p>
+<p>Birebir eşleşme için meta karakterleri parantez içine alın. Örneğin, <code>'[?]'</code> yazımı, <code>'?'</code> karakteriyle eşleşir.</p>
+<h2>glob Metodu (glob.glob)</h2>
+<p><code>glob</code> kütüphanesinin <code>glob</code> metodunun kullanımı aşağıdaki şekildedir.</p>
+<p><code>glob.glob(pathname, *, root_dir=None, dir_fd=None, recursive=False, include_hidden=False)</code></p>
+<p>Dosya yolu adı (pathname) mutlak (<code>/usr/src/Python-1.5/Makefile</code> gibi) veya göreli (<code>../../Tools/*/*.gif</code> gibi) olabilir ve kabuk tarzı joker karakterler içerebilir. Bozuk sembolik bağlantılar sonuçlara dahil edilir (kabukta olduğu gibi). Sonuçların sıralanıp sıralanmayacağı dosya sistemine bağlıdır. Bu fonksiyonun çağrılması sırasında koşulları sağlayan bir dosya kaldırılır veya eklenirse, bu dosya için bir yol adının dahil edilip edilmeyeceği belirtilmez.</p>
+<p>Bu kadar teknik anlatım yeterli biraz örnek yapalım.</p>
+<p><code>/home/mhalil/İndirilenler/veriler/</code> klasörü içerisinde bulunan tüm dosyaları listelemek istediğimizi düşünelim. Bu durumda aşağıdaki kodu çalıştırmamız yeterli olacaktır.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dosyalar</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Çıktı</strong>, <code>liste</code> veri tipinde olacaktır;</p>
+<div class="highlight"><pre><span></span><code>[&#39;/home/mhalil/İndirilenler/veriler/Python_ProgramlamaDili.pdf&#39;, &#39;/home/mhalil/İndirilenler/veriler/360low1.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/Ödeme Durumu.xlsx&#39;, &#39;/home/mhalil/İndirilenler/veriler/enfuse-handheld-hdri.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/Liste.txt&#39;, &#39;/home/mhalil/İndirilenler/veriler/İlçe Kodları.xlsx&#39;, &#39;/home/mhalil/İndirilenler/veriler/artthings-enfuse-handheld.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/MEB Herkes icin Python Programlama Dili.pdf&#39;, &#39;/home/mhalil/İndirilenler/veriler/13_Panorama_1280x640.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/personel listesi.xlsx&#39;, &#39;/home/mhalil/İndirilenler/veriler/enfuse-handheld-hapala.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf&#39;, &#39;/home/mhalil/İndirilenler/veriler/Python for Excel.pdf&#39;, &#39;/home/mhalil/İndirilenler/veriler/symmetrical_garden_02_2k.hdr&#39;, &#39;/home/mhalil/İndirilenler/veriler/arakawa-enfuse-handheld.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/Notlar.txt&#39;, &quot;/home/mhalil/İndirilenler/veriler/Python&#39;da Fonksiyonlar.pdf&quot;]
+</code></pre></div>
+
+<p>Bu çıktı pek te istediğimiz gibi bir sonuç vermedi. Her dosyayı ayrı bir satırda görmek için <code>for</code> döngüsü kullanabiliriz.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>/home/mhalil/İndirilenler/veriler/Python_ProgramlamaDili.pdf
+/home/mhalil/İndirilenler/veriler/360low1.jpg
+/home/mhalil/İndirilenler/veriler/Ödeme Durumu.xlsx
+/home/mhalil/İndirilenler/veriler/enfuse-handheld-hdri.jpg
+/home/mhalil/İndirilenler/veriler/Liste.txt
+/home/mhalil/İndirilenler/veriler/İlçe Kodları.xlsx
+/home/mhalil/İndirilenler/veriler/artthings-enfuse-handheld.jpg
+/home/mhalil/İndirilenler/veriler/MEB Herkes icin Python Programlama Dili.pdf
+/home/mhalil/İndirilenler/veriler/13_Panorama_1280x640.jpg
+/home/mhalil/İndirilenler/veriler/personel listesi.xlsx
+/home/mhalil/İndirilenler/veriler/enfuse-handheld-hapala.jpg
+/home/mhalil/İndirilenler/veriler/UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+/home/mhalil/İndirilenler/veriler/Python for Excel.pdf
+/home/mhalil/İndirilenler/veriler/symmetrical_garden_02_2k.hdr
+/home/mhalil/İndirilenler/veriler/arakawa-enfuse-handheld.jpg
+/home/mhalil/İndirilenler/veriler/Notlar.txt
+/home/mhalil/İndirilenler/veriler/Python&#39;da Fonksiyonlar.pdf
+</code></pre></div>
+
+<p>Eğer dosyayolunu değil sadece dosya adlarını listelemek istersek, Karakter Dizisi Metotlarından olan <code>split()</code> ya da <code>rsplit()</code> metotlarını kullanabiliriz.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># Windows işletim sistemlerinde &quot;/&quot; yerine &quot;\&quot; kullanabilirsiniz.</span>
+</code></pre></div>
+
+<p>Bu kodun çıktısı aşağıda görüldüğü gibi sadece dosya isimleri olacaktır.</p>
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Python_ProgramlamaDili.pdf
+360low1.jpg
+Ödeme Durumu.xlsx
+enfuse-handheld-hdri.jpg
+Liste.txt
+İlçe Kodları.xlsx
+artthings-enfuse-handheld.jpg
+MEB Herkes icin Python Programlama Dili.pdf
+13_Panorama_1280x640.jpg
+personel listesi.xlsx
+enfuse-handheld-hapala.jpg
+UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+Python for Excel.pdf
+symmetrical_garden_02_2k.hdr
+arakawa-enfuse-handheld.jpg
+Notlar.txt
+Python&#39;da Fonksiyonlar.pdf
+</code></pre></div>
+
+<p>Gördüğünüz gibi sonuç alfabetik değil. Eğer dosya isimlerini alfabetik sıralamak istersek, <code>dosyalar</code> listesini <code>sort()</code> metodu ile alfabetik sıraya dizebiliriz.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="kr">List</span><span class="n">e</span><span class="mf">.</span><span class="n">txt</span>
+<span class="n">MEB</span><span class="w"> </span><span class="n">Herkes</span><span class="w"> </span><span class="n">icin</span><span class="w"> </span><span class="n">Python</span><span class="w"> </span><span class="n">Programlama</span><span class="w"> </span><span class="n">Dili</span><span class="mf">.</span><span class="n">pdf</span>
+<span class="ow">Not</span><span class="n">lar</span><span class="mf">.</span><span class="n">txt</span>
+<span class="n">personel</span><span class="w"> </span><span class="kr">list</span><span class="n">esi</span><span class="mf">.</span><span class="n">xlsx</span>
+<span class="n">Python</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">Excel</span><span class="mf">.</span><span class="n">pdf</span>
+<span class="n">Python</span><span class="err">&#39;</span><span class="n">da</span><span class="w"> </span><span class="n">Fonksiyonlar</span><span class="mf">.</span><span class="n">pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="mf">.</span><span class="n">pdf</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="mf">.</span><span class="n">pdf</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="mf">.</span><span class="n">hdr</span>
+<span class="n">Ödeme</span><span class="w"> </span><span class="n">Durumu</span><span class="mf">.</span><span class="n">xlsx</span>
+<span class="n">İlçe</span><span class="w"> </span><span class="n">Kodları</span><span class="mf">.</span><span class="n">xlsx</span>
+</code></pre></div>
+
+<h3>Filtreleme</h3>
+<p>Sıra geldi filtreleme işlemine. Yani belirli klasör içerisindeki tüm dosyaları değil de sadece belli uzantıya sahip ya da belirli karakter(ler) içeren veyahut belli karakter (harf / sayı) ile başlayan dosyaları listelemek isteyelim. Örneğin <code>/home/mhalil/İndirilenler/veriler/</code> klasörü içerisinde bulunan <code>.pdf</code> uzantılı dosyaları listeleyelim. Bunun için dosya sonuna (<code>.pdf</code> ibaresinden önce) <code>*</code> özel karakterini eklemeliyiz. Yani <code>*.pdf</code> ifadesini kullanmalıyız. Bunun anlamı; dosya adı ne olursa olsun, uzantısı <code>pdf</code> olsun yeterli demektir. Bir başka ifadeyle tüm pdf dosyaları demek oluyor.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*.pdf&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>MEB Herkes icin Python Programlama Dili.pdf
+Python for Excel.pdf
+Python&#39;da Fonksiyonlar.pdf
+Python_ProgramlamaDili.pdf
+UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+</code></pre></div>
+
+<p>Şimdi <code>P</code> harfi ile başlayan dosyaları listelemek isteyelim. Bunun için `P*);</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/P*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Python for Excel.pdf
+Python&#39;da Fonksiyonlar.pdf
+Python_ProgramlamaDili.pdf
+</code></pre></div>
+
+<p>Bu çıkıda bir şeyi fark etmiş olmalısınız. <code>P</code> ile başlayan dosya isimleri yazılırken <code>personel listesi.xlsx</code> dosyası yazılmadı. Bunun sebebi, <code>personel listesi.xlsx</code> dosyasının büyük P ile başlamıyor olması. Yani yazılan karakterler büyük / küçük harfe karşı duyarlı. eğer <code>P*</code> yerine <code>[Pp*]</code> yazmış olsaydık nasıl bir çıktı elde edrdik, inceleyelim.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/[Pp]*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p>Çıktı;</p>
+<div class="highlight"><pre><span></span><code>Python for Excel.pdf
+Python&#39;da Fonksiyonlar.pdf
+Python_ProgramlamaDili.pdf
+personel listesi.xlsx
+</code></pre></div>
+
+<p>Görüldüğü gibi artık <code>personel listesi.xlsx</code> dosyası listeleniyor. </p>
+<h3>Alt Klasörlerdeki Dosyaları Listelemek</h3>
+<p>Yukarıda kullandığımız kodlar ile sadece belirtilen klasör içerisindeki dosya ve klasöreri listeledik. Gelin şimdi içiçe klasörlerde bulunan dosyaları listeleyelim.</p>
+<p>Elimizde aşağıdaki şekilde bir klasör ve dosya yapısı olduğunu düşünelim;</p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+personel listesi.xlsx
+symmetrical_garden_02_2k.hdr
+Ödeme Durumu.xlsx
+İlçe Kodları.xlsx
+Okunacaklar
+|- MEB Herkes icin Python Programlama Dili.pdf
+|- Notlar.txt
+|- Python for Excel.pdf
+|- Python_ProgramlamaDili.pdf
+|- UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+|- python&#39;da Fonksiyonlar.pdf
+Resimler
+|- 13_Panorama_1280x640.jpg
+|- 360low1.jpg
+|- arakawa-enfuse-handheld.jpg
+|- artthings-enfuse-handheld.jpg
+|- enfuse-handheld-hapala.jpg
+|- enfuse-handheld-hdri.jpg
+</code></pre></div>
+
+<p><code>veriler</code> isimli klasörde 5 dosya ve 2 klasör (Okunacaklar ve Resimler) bulunuyor. Klasörlerin içerisinde de farklı isim ve uzantılara sahip dosyalar mevcut.</p>
+<p>Öncelikle yukarıdaki temel kodu kullanarak çıktı alalım.</p>
+<p><strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="c1"># # print(dosya)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+Okunacaklar
+Resimler
+personel listesi.xlsx
+symmetrical_garden_02_2k.hdr
+Ödeme Durumu.xlsx
+İlçe Kodları.xlsx
+</code></pre></div>
+
+<p>Çıktıda, mevcut <code>/home/mhalil/İndirilenler/veriler/</code> klasöründe bulunan dosya ve klasör isimleri görüyoruz. Alt klasörlere ait dosya isimleri bulunmuyor.</p>
+<p>Alt Klasördeki dosyaları görmek için <code>*/*</code> ifadesini kullanmalıyız. <code>*/</code> ifadesi, tüm klasörleri temsil ediyor. <code>Okunacaklar/</code> yazsaydık sadece <strong>Okunacaklar</strong> klasörünü belirtmiş olacaktık.
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*/*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="c1"># # print(dosya)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>MEB Herkes icin Python Programlama Dili.pdf
+Notlar.txt
+Python for Excel.pdf
+Python_ProgramlamaDili.pdf
+UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+python&#39;da Fonksiyonlar.pdf
+13_Panorama_1280x640.jpg
+360low1.jpg
+arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+</code></pre></div>
+
+<p>Çıktıda hem <strong>Okunacaklar</strong> hemde <strong>Resimler</strong> klasörlerinin içerisinde bulunan dosyaları listelemiş olduk. Bu kez de <strong>veriler</strong> klasöründeki dosyaları liste dışı bırakmış olduk.</p>
+<p>Mevcut klasör içerisindeki dosyalar ile birlikte tüm alt klasördeki dosyaları listelemek istersek <code>**/*</code> ifadesi ile birlikte <code>recursive = True</code> parametresini de kullanmak zorundayız. Aşağıdaki kodu ve çıktıyı inceleyin.</p>
+<p><strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/**/*&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="c1"># # print(dosya)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+Okunacaklar
+MEB Herkes icin Python Programlama Dili.pdf
+Notlar.txt
+Python for Excel.pdf
+Python_ProgramlamaDili.pdf
+UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+python&#39;da Fonksiyonlar.pdf
+Resimler
+13_Panorama_1280x640.jpg
+360low1.jpg
+arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+personel listesi.xlsx
+symmetrical_garden_02_2k.hdr
+Ödeme Durumu.xlsx
+İlçe Kodları.xlsx
+</code></pre></div>
+
+<p>Görüldüğü üzere hem mevcut klasördeki hem de alt klasörlerdeki dosya ve klasörler listelenmiş oldu.</p>
+<p>Gelin şimdi özel sembolleri inceleyelim.</p>
+<h3>Özel Semboller</h3>
+<p>Eğer <strong>Düzenli İfadeler (Regular Expressions - Regex)</strong> konusuna aşina iseniz, zaten bu konuyu biliyorsunuz demektir.</p>
+<p>glob kütüphanesini kullanarak dosya listelerken bize esneklik katan <code>*, ?, []</code> ve <code>[!]</code> özel sembollerin / karakterlerinin ne işe yaradığını bir tablo ile açıklayalım.</p>
+<table>
+<thead>
+<tr>
+<th>Özel Semboller</th>
+<th>Anlamı</th>
+<th>Örnek</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>Herşeyi (sıfır veya daha çok karakteri) temsil eder</td>
+<td><code>*.pdf</code> : belirtilen dosya yolundaki tüm <strong>PDF</strong> uzantılı dosyalar</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>herhangi BİR adet karakteri temsil eder</td>
+<td><code>?????</code> : 5 karekter uzunluğuna sahip dosyalar</td>
+</tr>
+<tr>
+<td><code>[]</code></td>
+<td>Köşeli parentez içindeki HERHANGİ bir karekteri BULUNDURAN</td>
+<td><code>[RPp]*</code> : R, P veya p ile başlayan dosyalar</td>
+</tr>
+<tr>
+<td><code>[!]</code></td>
+<td>Köşeli parentez içindeki HERHANGİ bir karekterle BULUNDURMAYAN</td>
+<td><code>[!ABC]*</code> : A, B veya C ile başlamayan dosyalar.</td>
+</tr>
+</tbody>
+</table>
+<p>Özel sembolere ait bir kaç örnek kod yazalım.</p>
+<p><strong>NOT: İlk 11 Örnekte dosya ve klasör yapısı aşağıdaki gibidir;</strong></p>
+<div class="highlight"><pre><span></span><code>/home/mhalil/İndirilenler/veriler/Python_ProgramlamaDili.pdf
+/home/mhalil/İndirilenler/veriler/360low1.jpg
+/home/mhalil/İndirilenler/veriler/Ödeme Durumu.xlsx
+/home/mhalil/İndirilenler/veriler/enfuse-handheld-hdri.jpg
+/home/mhalil/İndirilenler/veriler/Liste.txt
+/home/mhalil/İndirilenler/veriler/İlçe Kodları.xlsx
+/home/mhalil/İndirilenler/veriler/artthings-enfuse-handheld.jpg
+/home/mhalil/İndirilenler/veriler/MEB Herkes icin Python Programlama Dili.pdf
+/home/mhalil/İndirilenler/veriler/13_Panorama_1280x640.jpg
+/home/mhalil/İndirilenler/veriler/personel listesi.xlsx
+/home/mhalil/İndirilenler/veriler/enfuse-handheld-hapala.jpg
+/home/mhalil/İndirilenler/veriler/UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+/home/mhalil/İndirilenler/veriler/Python for Excel.pdf
+/home/mhalil/İndirilenler/veriler/symmetrical_garden_02_2k.hdr
+/home/mhalil/İndirilenler/veriler/arakawa-enfuse-handheld.jpg
+/home/mhalil/İndirilenler/veriler/Notlar.txt
+/home/mhalil/İndirilenler/veriler/Python&#39;da Fonksiyonlar.pdf
+</code></pre></div>
+
+<h4>Örnek 1:</h4>
+<p>İÇİNDE sayı BULUNAN dosyaları listeleyelim. <code>*[0-9]*</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*[0-9]*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="mf">.</span><span class="n">hdr</span>
+</code></pre></div>
+
+<h4>Örnek 2:</h4>
+<p>Sayı ile BAŞLAYAN dosya isimlerini listeleyelim. <code>[0-9]*</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/[0-9]*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
+</code></pre></div>
+
+<h4>Örnek 3:</h4>
+<p>Büyük harf ile BAŞLAYAN dosyaları listeleyelim. <code>[A-Z]*</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/[A-Z]*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+MEB Herkes icin Python Programlama Dili.pdf
+Notlar.txt
+Python for Excel.pdf
+Python&#39;da Fonksiyonlar.pdf
+Python_ProgramlamaDili.pdf
+UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+</code></pre></div>
+
+<h4>Örnek 4:</h4>
+<p>Büyük harf ile BAŞLAYAN ancak baş harfi <code>A</code> ile <code>N</code> harfleri ARASINDA olan dosyaları listeleyelim. <code>[A-N]*</code></p>
+<p><strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/[A-N]*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+MEB Herkes icin Python Programlama Dili.pdf
+Notlar.txt
+</code></pre></div>
+
+<h4>Örnek 5:</h4>
+<p>Küçük harf ile BAŞLAYAN dosyaları listeleyelim. <code>[a-z]*</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/[a-z]*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+personel listesi.xlsx
+symmetrical_garden_02_2k.hdr
+</code></pre></div>
+
+<h4>Örnek 6:</h4>
+<p>Hem Büyük hemde Küçük harf ile BAŞLAYAN (sayı ya da özel simge ile başlamayan) dosyaları listeleyelim. <code>[A-Za-z]*</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/[A-Za-z]*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+MEB Herkes icin Python Programlama Dili.pdf
+Notlar.txt
+Python for Excel.pdf
+Python&#39;da Fonksiyonlar.pdf
+Python_ProgramlamaDili.pdf
+UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+personel listesi.xlsx
+symmetrical_garden_02_2k.hdr
+</code></pre></div>
+
+<h4>Örnek 7:</h4>
+<p><code>JPG</code> uzantılı dosyaları listeleyelim. <code>*.jpg</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*.jpg&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="mf">.</span><span class="n">jpg</span>
+</code></pre></div>
+
+<h4>Örnek 8:</h4>
+<p>Saıyı ile BAŞLAMAYAN <code>JPG</code> dosyaları listeleyelim. <code>[!0-9]*.jpg</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/[!0-9]*.jpg&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+</code></pre></div>
+
+<h4>Örnek 9:</h4>
+<p>İÇİNDE <code>en</code> ibaresi bulunan dosyaları listeleyelim. <code>*en*</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*en*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+symmetrical_garden_02_2k.hdr
+</code></pre></div>
+
+<h4>Örnek 10:</h4>
+<p>Dosya uzantısı dahil TOPLAM 11 KARAKTER uzunluğundaki dosyaları listeleyelim. <code>???????????</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/???????????&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
+</code></pre></div>
+
+<h4>Örnek 11:</h4>
+<p>Elimizde aşağıdaki gibi dosya isimleri olduğunu düşünelim.</p>
+<div class="highlight"><pre><span></span><code>Python for Excel.pdf
+python&#39;da Fonksiyonlar.pdf
+Python_ProgramlamaDili.pdf
+</code></pre></div>
+
+<p>Bu dosyaların tümünü <code>?</code> özel sembolünü kullanarak tek seferde listelemek için aşağıdaki kodu kullanabiliriz. <code>?ython*</code></p>
+<p><strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/?ython*&quot;</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Python for Excel.pdf
+Python_ProgramlamaDili.pdf
+python&#39;da Fonksiyonlar.pdf
+</code></pre></div>
+
+<p>Gördüğünüz gibi dosyaların baş harfi ne olursa olsun fark etmiyor, 2. harften itibaren 6. harfe kadar <code>ython</code> ibaresinin olması şartı sağlanan dosyalar listeleniyor.</p>
+<p><strong>NOT: Aşağıdaki örneklerde dosya ve klasör yapısı şu şekildedir;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+personel listesi.xlsx
+symmetrical_garden_02_2k.hdr
+Ödeme Durumu.xlsx
+İlçe Kodları.xlsx
+Okunacaklar
+|- MEB Herkes icin Python Programlama Dili.pdf
+|- Notlar.txt
+|- Python for Excel.pdf
+|- Python_ProgramlamaDili.pdf
+|- UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+|- python&#39;da Fonksiyonlar.pdf
+Resimler
+|- 13_Panorama_1280x640.jpg
+|- 360low1.jpg
+|- arakawa-enfuse-handheld.jpg
+|- artthings-enfuse-handheld.jpg
+|- enfuse-handheld-hapala.jpg
+|- enfuse-handheld-hdri.jpg
+</code></pre></div>
+
+<h4>Örnek 12:</h4>
+<p><code>/home/mhalil/İndirilenler/veriler/</code> klasörü ve alt klasörlerinde başharfi büyük veya küçük <code>a</code> ve <code>n</code> ile başlayan dosyaları listeleyelim. <code>**/[a-nA-N]*", recursive=True</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/**/[a-nA-N]*&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+MEB Herkes icin Python Programlama Dili.pdf
+Notlar.txt
+arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+</code></pre></div>
+
+<h4>Örnek 13:</h4>
+<p><code>/home/mhalil/İndirilenler/veriler/</code> klasörü ve alt klasörlerinde <code>txt</code> uzantılı dosyaları listeleyelim. <code>**/*.txt", recursive=True</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/**/*.txt&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+Notlar.txt
+</code></pre></div>
+
+<h4>Örnek 14:</h4>
+<p><code>/home/mhalil/İndirilenler/veriler/</code> klasörü ve alt klasörlerinde küçük harfle başlayan dosyaları listeleyelim. <code>**/[a-z]*", recursive=True</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/**/[a-z]*&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>python&#39;da Fonksiyonlar.pdf
+arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+personel listesi.xlsx
+symmetrical_garden_02_2k.hdr
+</code></pre></div>
+
+<h4>Örnek 15:</h4>
+<p><code>/home/mhalil/İndirilenler/veriler/</code> klasörü ve alt klasörlerinde içinde sayı bulunan dosyaları listeleyelim. <code>**/*[0-9]*", recursive=True</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/**/*[0-9]*&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="mf">.</span><span class="n">hdr</span>
+</code></pre></div>
+
+<h4>Örnek 16:</h4>
+<p><code>/home/mhalil/İndirilenler/veriler/</code> klasörü ve alt klasörlerinde sadece dosyaları listeleyelim. Klasör isimlerinin (ör. <code>Okunacaklar</code> ve <code>Resimler</code>) listelenmesini istemeyelim. <code>**/*.*", recursive=True</code>
+<strong>Kod;</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/**/*.*&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+
+<p><strong>Çıktı;</strong></p>
+<div class="highlight"><pre><span></span><code>Liste.txt
+MEB Herkes icin Python Programlama Dili.pdf
+Notlar.txt
+Python for Excel.pdf
+Python_ProgramlamaDili.pdf
+UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+python&#39;da Fonksiyonlar.pdf
+13_Panorama_1280x640.jpg
+360low1.jpg
+arakawa-enfuse-handheld.jpg
+artthings-enfuse-handheld.jpg
+enfuse-handheld-hapala.jpg
+enfuse-handheld-hdri.jpg
+personel listesi.xlsx
+symmetrical_garden_02_2k.hdr
+Ödeme Durumu.xlsx
+İlçe Kodları.xlsx
+</code></pre></div>
+
+<h3>Kaynaklar;</h3>
+<ul>
+<li><a href="https://docs.python.org/tr/3.11/library/glob.html#module-glob">Python Glob Modülü Resmi Sayfası</a></li>
+<li><a href="https://bayramadali.wordpress.com/python-glob-modulu/">Bayram Adali - Programcı Kafa</a></li>
+<li><a href="https://www.youtube.com/watch?v=mxqrzijYF1k">Python'a Giriş Youtube Kanalı</a></li>
+</ul>
+</div>
+		</div>
+	</body>
+</html>
