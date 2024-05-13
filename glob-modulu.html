@@ -77,11 +77,12 @@
 <div class="post">
 	<h1 class="post-title">glob Modülü</h1>
 	<span class="post-date">Cts 11 Mayıs 2024</span>
-	<h1>glob Modülü</h1>
-<p><code>glob</code>, Python’da belirli bir dizin (klasör) içindeki dosyaları listelememizi sağlayan bir kütüphane/modüldür. Bu modül Unix kabuğu tarafından kullanılan kurallara göre belirtilen bir kalıpla eşleşen tüm yol adlarını bulur, ancak sonuçlar rastgele sırayla döndürülür. Tilde (<code>~</code>) işareti genişletmesi yapılmaz, ancak <code>*, ?</code> ve <code>[]</code> ile ifade edilen karakter aralıkları doğru şekilde eşleştirilir. Bu işlem <code>os.scandir()</code> ve <code>fnmatch.fnmatch()</code> fonksiyonlarının birlikte kullanılmasıyla gerçekleştirilir, bir alt kabuğun çağrılmasıyla değil.</p>
+	<h1>glob Modülü / Kütüphanesi</h1>
+<p><code>glob</code>, Python’da belirli bir dizin (klasör) içindeki dosyaları listelememizi sağlayan standart (gömülü) python kütüphanelerinden / modüllerinden biridir. Modülü kullanmak için <code>import glob</code> kodunu çalışmanıza eklemeniz yeterli. </p>
+<p><code>glob</code> kütüphanesi, dosya yolu ve desen yönetimini basitleştirmek için oyunun kurallarını değiştiren güçlü bir araçtır. Joker karakter kalıpları ve özyineleme (recursive) özelliğinden (parametresinden) yararlanarak, dosyaları verimli bir şekilde bulup işleyebilir, zaman ve emekten tasarruf sağlayabiliriz.</p>
 <p>Bu modülü kullanırken filtreleme yaparak, sadece istenilen dosyaların listelenmesini de sağlayabiliyoruz. Aşağıda, bu konuyla alakalı örnekler bulunmaktadır.</p>
+<p>Bu modül Unix kabuğu tarafından kullanılan kurallara göre belirtilen bir kalıpla / desenle eşleşen tüm yol adlarını bulur, ancak sonuçlar rastgele sırayla döndürülür. Tilde (<code>~</code>) işareti genişletmesi yapılmaz, ancak <code>*, ?</code> ve <code>[]</code> ile ifade edilen karakter aralıkları doğru şekilde eşleştirilir. Bu işlem <code>os.scandir()</code> ve <code>fnmatch.fnmatch()</code> fonksiyonlarının birlikte kullanılmasıyla gerçekleştirilir, bir alt kabuğun çağrılmasıyla değil.</p>
 <p>Nokta (<code>.</code>) ile başlayan dosyaların, <code>fnmatch.fnmatch()</code> veya <code>pathlib.Path.glob()</code>'un aksine, yalnızca nokta ile başlayan kalıplarla eşleştirilebileceğini unutmayın. (Tilde ve kabuk değişkeni genişletmesi için <code>os.path.expanduser()</code> ve <code>os.path.expandvars()</code> kullanın).</p>
-<p>Birebir eşleşme için meta karakterleri parantez içine alın. Örneğin, <code>'[?]'</code> yazımı, <code>'?'</code> karakteriyle eşleşir.</p>
 <h2>glob Metodu (glob.glob)</h2>
 <p><code>glob</code> kütüphanesinin <code>glob</code> metodunun kullanımı aşağıdaki şekildedir.</p>
 <p><code>glob.glob(pathname, *, root_dir=None, dir_fd=None, recursive=False, include_hidden=False)</code></p>
@@ -95,7 +96,7 @@
 </code></pre></div>
 
 <p><strong>Çıktı</strong>, <code>liste</code> veri tipinde olacaktır;</p>
-<div class="highlight"><pre><span></span><code>[&#39;/home/mhalil/İndirilenler/veriler/Python_ProgramlamaDili.pdf&#39;, &#39;/home/mhalil/İndirilenler/veriler/360low1.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/Ödeme Durumu.xlsx&#39;, &#39;/home/mhalil/İndirilenler/veriler/enfuse-handheld-hdri.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/Liste.txt&#39;, &#39;/home/mhalil/İndirilenler/veriler/İlçe Kodları.xlsx&#39;, &#39;/home/mhalil/İndirilenler/veriler/artthings-enfuse-handheld.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/MEB Herkes icin Python Programlama Dili.pdf&#39;, &#39;/home/mhalil/İndirilenler/veriler/13_Panorama_1280x640.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/personel listesi.xlsx&#39;, &#39;/home/mhalil/İndirilenler/veriler/enfuse-handheld-hapala.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf&#39;, &#39;/home/mhalil/İndirilenler/veriler/Python for Excel.pdf&#39;, &#39;/home/mhalil/İndirilenler/veriler/symmetrical_garden_02_2k.hdr&#39;, &#39;/home/mhalil/İndirilenler/veriler/arakawa-enfuse-handheld.jpg&#39;, &#39;/home/mhalil/İndirilenler/veriler/Notlar.txt&#39;, &quot;/home/mhalil/İndirilenler/veriler/Python&#39;da Fonksiyonlar.pdf&quot;]
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="s1">&#39;/home/mhalil/İndirilenler/veriler/Python_ProgramlamaDili.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/360low1.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/Ödeme Durumu.xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/enfuse-handheld-hdri.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/Liste.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/İlçe Kodları.xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/artthings-enfuse-handheld.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/MEB Herkes icin Python Programlama Dili.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/13_Panorama_1280x640.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/personel listesi.xlsx&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/enfuse-handheld-hapala.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/Python for Excel.pdf&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/symmetrical_garden_02_2k.hdr&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/arakawa-enfuse-handheld.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;/home/mhalil/İndirilenler/veriler/Notlar.txt&#39;</span><span class="p">,</span> <span class="s2">&quot;/home/mhalil/İndirilenler/veriler/Python&#39;da Fonksiyonlar.pdf&quot;</span><span class="p">]</span>
 </code></pre></div>
 
 <p>Bu çıktı pek te istediğimiz gibi bir sonuç vermedi. Her dosyayı ayrı bir satırda görmek için <code>for</code> döngüsü kullanabiliriz.</p>
@@ -108,23 +109,23 @@
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>/home/mhalil/İndirilenler/veriler/Python_ProgramlamaDili.pdf
-/home/mhalil/İndirilenler/veriler/360low1.jpg
-/home/mhalil/İndirilenler/veriler/Ödeme Durumu.xlsx
-/home/mhalil/İndirilenler/veriler/enfuse-handheld-hdri.jpg
-/home/mhalil/İndirilenler/veriler/Liste.txt
-/home/mhalil/İndirilenler/veriler/İlçe Kodları.xlsx
-/home/mhalil/İndirilenler/veriler/artthings-enfuse-handheld.jpg
-/home/mhalil/İndirilenler/veriler/MEB Herkes icin Python Programlama Dili.pdf
-/home/mhalil/İndirilenler/veriler/13_Panorama_1280x640.jpg
-/home/mhalil/İndirilenler/veriler/personel listesi.xlsx
-/home/mhalil/İndirilenler/veriler/enfuse-handheld-hapala.jpg
-/home/mhalil/İndirilenler/veriler/UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-/home/mhalil/İndirilenler/veriler/Python for Excel.pdf
-/home/mhalil/İndirilenler/veriler/symmetrical_garden_02_2k.hdr
-/home/mhalil/İndirilenler/veriler/arakawa-enfuse-handheld.jpg
-/home/mhalil/İndirilenler/veriler/Notlar.txt
-/home/mhalil/İndirilenler/veriler/Python&#39;da Fonksiyonlar.pdf
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
 </code></pre></div>
 
 <p>Eğer dosyayolunu değil sadece dosya adlarını listelemek istersek, Karakter Dizisi Metotlarından olan <code>split()</code> ya da <code>rsplit()</code> metotlarını kullanabiliriz.</p>
@@ -138,23 +139,23 @@
 
 <p>Bu kodun çıktısı aşağıda görüldüğü gibi sadece dosya isimleri olacaktır.</p>
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Python_ProgramlamaDili.pdf
-360low1.jpg
-Ödeme Durumu.xlsx
-enfuse-handheld-hdri.jpg
-Liste.txt
-İlçe Kodları.xlsx
-artthings-enfuse-handheld.jpg
-MEB Herkes icin Python Programlama Dili.pdf
-13_Panorama_1280x640.jpg
-personel listesi.xlsx
-enfuse-handheld-hapala.jpg
-UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-Python for Excel.pdf
-symmetrical_garden_02_2k.hdr
-arakawa-enfuse-handheld.jpg
-Notlar.txt
-Python&#39;da Fonksiyonlar.pdf
+<div class="highlight"><pre><span></span><code><span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
 </code></pre></div>
 
 <p>Gördüğünüz gibi sonuç alfabetik değil. Eğer dosya isimlerini alfabetik sıralamak istersek, <code>dosyalar</code> listesini <code>sort()</code> metodu ile alfabetik sıraya dizebiliriz.</p>
@@ -168,23 +169,23 @@ Python&#39;da Fonksiyonlar.pdf
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="kr">List</span><span class="n">e</span><span class="mf">.</span><span class="n">txt</span>
-<span class="n">MEB</span><span class="w"> </span><span class="n">Herkes</span><span class="w"> </span><span class="n">icin</span><span class="w"> </span><span class="n">Python</span><span class="w"> </span><span class="n">Programlama</span><span class="w"> </span><span class="n">Dili</span><span class="mf">.</span><span class="n">pdf</span>
-<span class="ow">Not</span><span class="n">lar</span><span class="mf">.</span><span class="n">txt</span>
-<span class="n">personel</span><span class="w"> </span><span class="kr">list</span><span class="n">esi</span><span class="mf">.</span><span class="n">xlsx</span>
-<span class="n">Python</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">Excel</span><span class="mf">.</span><span class="n">pdf</span>
-<span class="n">Python</span><span class="err">&#39;</span><span class="n">da</span><span class="w"> </span><span class="n">Fonksiyonlar</span><span class="mf">.</span><span class="n">pdf</span>
-<span class="n">Python_ProgramlamaDili</span><span class="mf">.</span><span class="n">pdf</span>
-<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="mf">.</span><span class="n">pdf</span>
-<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">symmetrical_garden_02_2k</span><span class="mf">.</span><span class="n">hdr</span>
-<span class="n">Ödeme</span><span class="w"> </span><span class="n">Durumu</span><span class="mf">.</span><span class="n">xlsx</span>
-<span class="n">İlçe</span><span class="w"> </span><span class="n">Kodları</span><span class="mf">.</span><span class="n">xlsx</span>
+<div class="highlight"><pre><span></span><code><span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
 </code></pre></div>
 
 <h3>Filtreleme</h3>
@@ -199,11 +200,11 @@ Python&#39;da Fonksiyonlar.pdf
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>MEB Herkes icin Python Programlama Dili.pdf
-Python for Excel.pdf
-Python&#39;da Fonksiyonlar.pdf
-Python_ProgramlamaDili.pdf
-UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+<div class="highlight"><pre><span></span><code><span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
 </code></pre></div>
 
 <p>Şimdi <code>P</code> harfi ile başlayan dosyaları listelemek isteyelim. Bunun için `P*);</p>
@@ -217,9 +218,9 @@ UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Python for Excel.pdf
-Python&#39;da Fonksiyonlar.pdf
-Python_ProgramlamaDili.pdf
+<div class="highlight"><pre><span></span><code><span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
 </code></pre></div>
 
 <p>Bu çıkıda bir şeyi fark etmiş olmalısınız. <code>P</code> ile başlayan dosya isimleri yazılırken <code>personel listesi.xlsx</code> dosyası yazılmadı. Bunun sebebi, <code>personel listesi.xlsx</code> dosyasının büyük P ile başlamıyor olması. Yani yazılan karakterler büyük / küçük harfe karşı duyarlı. eğer <code>P*</code> yerine <code>[Pp*]</code> yazmış olsaydık nasıl bir çıktı elde edrdik, inceleyelim.</p>
@@ -233,35 +234,35 @@ Python_ProgramlamaDili.pdf
 </code></pre></div>
 
 <p>Çıktı;</p>
-<div class="highlight"><pre><span></span><code>Python for Excel.pdf
-Python&#39;da Fonksiyonlar.pdf
-Python_ProgramlamaDili.pdf
-personel listesi.xlsx
+<div class="highlight"><pre><span></span><code><span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
 </code></pre></div>
 
 <p>Görüldüğü gibi artık <code>personel listesi.xlsx</code> dosyası listeleniyor. </p>
 <h3>Alt Klasörlerdeki Dosyaları Listelemek</h3>
 <p>Yukarıda kullandığımız kodlar ile sadece belirtilen klasör içerisindeki dosya ve klasöreri listeledik. Gelin şimdi içiçe klasörlerde bulunan dosyaları listeleyelim.</p>
 <p>Elimizde aşağıdaki şekilde bir klasör ve dosya yapısı olduğunu düşünelim;</p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-personel listesi.xlsx
-symmetrical_garden_02_2k.hdr
-Ödeme Durumu.xlsx
-İlçe Kodları.xlsx
-Okunacaklar
-|- MEB Herkes icin Python Programlama Dili.pdf
-|- Notlar.txt
-|- Python for Excel.pdf
-|- Python_ProgramlamaDili.pdf
-|- UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-|- python&#39;da Fonksiyonlar.pdf
-Resimler
-|- 13_Panorama_1280x640.jpg
-|- 360low1.jpg
-|- arakawa-enfuse-handheld.jpg
-|- artthings-enfuse-handheld.jpg
-|- enfuse-handheld-hapala.jpg
-|- enfuse-handheld-hdri.jpg
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">Okunacaklar</span>
+<span class="o">|--</span> <span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">|--</span> <span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">|--</span> <span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">|--</span> <span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">|--</span> <span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">|--</span> <span class="n">python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Resimler</span>
+<span class="o">|--</span> <span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|--</span> <span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|--</span> <span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|--</span> <span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|--</span> <span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|--</span> <span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
 </code></pre></div>
 
 <p><code>veriler</code> isimli klasörde 5 dosya ve 2 klasör (Okunacaklar ve Resimler) bulunuyor. Klasörlerin içerisinde de farklı isim ve uzantılara sahip dosyalar mevcut.</p>
@@ -273,18 +274,17 @@ Resimler
 <span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
-    <span class="c1"># # print(dosya)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-Okunacaklar
-Resimler
-personel listesi.xlsx
-symmetrical_garden_02_2k.hdr
-Ödeme Durumu.xlsx
-İlçe Kodları.xlsx
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Okunacaklar</span>
+<span class="n">Resimler</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
 </code></pre></div>
 
 <p>Çıktıda, mevcut <code>/home/mhalil/İndirilenler/veriler/</code> klasöründe bulunan dosya ve klasör isimleri görüyoruz. Alt klasörlere ait dosya isimleri bulunmuyor.</p>
@@ -296,27 +296,27 @@ symmetrical_garden_02_2k.hdr
 <span class="n">dosyalar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">dosya</span> <span class="ow">in</span> <span class="n">dosyalar</span><span class="p">:</span>
-    <span class="c1"># # print(dosya)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">dosya</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>MEB Herkes icin Python Programlama Dili.pdf
-Notlar.txt
-Python for Excel.pdf
-Python_ProgramlamaDili.pdf
-UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-python&#39;da Fonksiyonlar.pdf
-13_Panorama_1280x640.jpg
-360low1.jpg
-arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
+<div class="highlight"><pre><span></span><code><span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
 </code></pre></div>
 
 <p>Çıktıda hem <strong>Okunacaklar</strong> hemde <strong>Resimler</strong> klasörlerinin içerisinde bulunan dosyaları listelemiş olduk. Bu kez de <strong>veriler</strong> klasöründeki dosyaları liste dışı bırakmış olduk.</p>
-<p>Mevcut klasör içerisindeki dosyalar ile birlikte tüm alt klasördeki dosyaları listelemek istersek <code>**/*</code> ifadesi ile birlikte <code>recursive = True</code> parametresini de kullanmak zorundayız. Aşağıdaki kodu ve çıktıyı inceleyin.</p>
+<p>Mevcut klasör içerisindeki dosyalar ile birlikte tüm alt klasördeki dosyaları listelemek istersek <code>**/*</code> ifadesi ile birlikte <code>recursive = True</code> parametresini de kullanmak zorundayız. <code>recursive = True</code> argümanının eklenmesi, arama terimimizin tam olarak hangi klasörde olacağından emin olmadığımız durumda çok yararlı olabilir. <code>recursive</code> parametresinin belirtilmemesi veya <code>False</code> olarak ayarlanması durumunda, yalnızca klasörde arama yapılır.</p>
+<p>Aşağıdaki kodu ve çıktıyı inceleyin.</p>
 <p><strong>Kod;</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
 
@@ -329,31 +329,54 @@ enfuse-handheld-hdri.jpg
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-Okunacaklar
-MEB Herkes icin Python Programlama Dili.pdf
-Notlar.txt
-Python for Excel.pdf
-Python_ProgramlamaDili.pdf
-UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-python&#39;da Fonksiyonlar.pdf
-Resimler
-13_Panorama_1280x640.jpg
-360low1.jpg
-arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
-personel listesi.xlsx
-symmetrical_garden_02_2k.hdr
-Ödeme Durumu.xlsx
-İlçe Kodları.xlsx
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Okunacaklar</span>
+<span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Resimler</span>
+<span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
 </code></pre></div>
 
 <p>Görüldüğü üzere hem mevcut klasördeki hem de alt klasörlerdeki dosya ve klasörler listelenmiş oldu.</p>
 <p>Gelin şimdi özel sembolleri inceleyelim.</p>
+<h2>iglob Metodu (glob.iglob)</h2>
+<p>Çok sayıda dizin içerisinde arama yapmak, uzun zaman alabilir ve çok fazla bellek kullanabilir. Bunun için bir çözüm <code>iglob</code> kullanmaktır.</p>
+<p><code>iglob</code>'un <code>glob</code>'dan farkı, "<code>glob</code> ile aynı değerleri aynı anda depolamadan veren (<code>yields</code>)" bir yineleyici (iterator) döndürmesidir. Bu, <code>glob</code>'a kıyasla daha iyi performans / verim sağlar.</p>
+<p>Bir dizindeki belirli bir desenle / kalıpla eşleşen tüm dosyaları bulmak için <code>glob</code> kullanımını gösterdik. Dosyalar daha sonra daha fazla analiz için kullanılmak üzere tek bir veri çerçevesi halinde birleştirildi.</p>
+<p>Ayrıca, verilen bir dizeyi içeren dosyalar için birçok dizini özyinelemeli olarak aramak için <code>iglob</code> kullanımını da tartıştık.</p>
+<p><code>iglob</code> metodu, bir <code>generator nesnesi</code> döndürür. sonuçları ekrana yazdırmak için <code>next</code> kullanılabilir.</p>
+<p>Kod;</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
+
+<span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">iglob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/**/*.*&quot;</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">dosyalar</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Çıktı;</p>
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+</code></pre></div>
+
 <h3>Özel Semboller</h3>
-<p>Eğer <strong>Düzenli İfadeler (Regular Expressions - Regex)</strong> konusuna aşina iseniz, zaten bu konuyu biliyorsunuz demektir.</p>
+<p>Eğer <strong>Düzenli İfadeler (Regular Expressions - Regex)</strong> konusuna aşina iseniz, zaten bu konuyu biliyorsunuz diyebiliriz.</p>
 <p>glob kütüphanesini kullanarak dosya listelerken bize esneklik katan <code>*, ?, []</code> ve <code>[!]</code> özel sembollerin / karakterlerinin ne işe yaradığını bir tablo ile açıklayalım.</p>
 <table>
 <thead>
@@ -386,25 +409,26 @@ symmetrical_garden_02_2k.hdr
 </tr>
 </tbody>
 </table>
+<p>Birebir eşleşme için meta karakterleri parantez içine alın. Örneğin, <code>'[?]'</code> yazımı, <code>'?'</code> karakteriyle eşleşir.</p>
 <p>Özel sembolere ait bir kaç örnek kod yazalım.</p>
 <p><strong>NOT: İlk 11 Örnekte dosya ve klasör yapısı aşağıdaki gibidir;</strong></p>
-<div class="highlight"><pre><span></span><code>/home/mhalil/İndirilenler/veriler/Python_ProgramlamaDili.pdf
-/home/mhalil/İndirilenler/veriler/360low1.jpg
-/home/mhalil/İndirilenler/veriler/Ödeme Durumu.xlsx
-/home/mhalil/İndirilenler/veriler/enfuse-handheld-hdri.jpg
-/home/mhalil/İndirilenler/veriler/Liste.txt
-/home/mhalil/İndirilenler/veriler/İlçe Kodları.xlsx
-/home/mhalil/İndirilenler/veriler/artthings-enfuse-handheld.jpg
-/home/mhalil/İndirilenler/veriler/MEB Herkes icin Python Programlama Dili.pdf
-/home/mhalil/İndirilenler/veriler/13_Panorama_1280x640.jpg
-/home/mhalil/İndirilenler/veriler/personel listesi.xlsx
-/home/mhalil/İndirilenler/veriler/enfuse-handheld-hapala.jpg
-/home/mhalil/İndirilenler/veriler/UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-/home/mhalil/İndirilenler/veriler/Python for Excel.pdf
-/home/mhalil/İndirilenler/veriler/symmetrical_garden_02_2k.hdr
-/home/mhalil/İndirilenler/veriler/arakawa-enfuse-handheld.jpg
-/home/mhalil/İndirilenler/veriler/Notlar.txt
-/home/mhalil/İndirilenler/veriler/Python&#39;da Fonksiyonlar.pdf
+<div class="highlight"><pre><span></span><code><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">mhalil</span><span class="o">/</span><span class="n">İndirilenler</span><span class="o">/</span><span class="n">veriler</span><span class="o">/</span><span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
 </code></pre></div>
 
 <h4>Örnek 1:</h4>
@@ -420,9 +444,9 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">symmetrical_garden_02_2k</span><span class="mf">.</span><span class="n">hdr</span>
+<div class="highlight"><pre><span></span><code><span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
 </code></pre></div>
 
 <h4>Örnek 2:</h4>
@@ -438,8 +462,8 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
+<div class="highlight"><pre><span></span><code><span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
 </code></pre></div>
 
 <h4>Örnek 3:</h4>
@@ -455,13 +479,13 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-MEB Herkes icin Python Programlama Dili.pdf
-Notlar.txt
-Python for Excel.pdf
-Python&#39;da Fonksiyonlar.pdf
-Python_ProgramlamaDili.pdf
-UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
 </code></pre></div>
 
 <h4>Örnek 4:</h4>
@@ -477,9 +501,9 @@ UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-MEB Herkes icin Python Programlama Dili.pdf
-Notlar.txt
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
 </code></pre></div>
 
 <h4>Örnek 5:</h4>
@@ -495,12 +519,12 @@ Notlar.txt
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
-personel listesi.xlsx
-symmetrical_garden_02_2k.hdr
+<div class="highlight"><pre><span></span><code><span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
 </code></pre></div>
 
 <h4>Örnek 6:</h4>
@@ -516,19 +540,19 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-MEB Herkes icin Python Programlama Dili.pdf
-Notlar.txt
-Python for Excel.pdf
-Python&#39;da Fonksiyonlar.pdf
-Python_ProgramlamaDili.pdf
-UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
-personel listesi.xlsx
-symmetrical_garden_02_2k.hdr
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
 </code></pre></div>
 
 <h4>Örnek 7:</h4>
@@ -544,12 +568,12 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="mf">.</span><span class="n">jpg</span>
+<div class="highlight"><pre><span></span><code><span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
 </code></pre></div>
 
 <h4>Örnek 8:</h4>
@@ -565,10 +589,10 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
+<div class="highlight"><pre><span></span><code><span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
 </code></pre></div>
 
 <h4>Örnek 9:</h4>
@@ -584,11 +608,11 @@ enfuse-handheld-hdri.jpg
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
-symmetrical_garden_02_2k.hdr
+<div class="highlight"><pre><span></span><code><span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
 </code></pre></div>
 
 <h4>Örnek 10:</h4>
@@ -604,14 +628,14 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
+<div class="highlight"><pre><span></span><code><span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
 </code></pre></div>
 
 <h4>Örnek 11:</h4>
 <p>Elimizde aşağıdaki gibi dosya isimleri olduğunu düşünelim.</p>
-<div class="highlight"><pre><span></span><code>Python for Excel.pdf
-python&#39;da Fonksiyonlar.pdf
-Python_ProgramlamaDili.pdf
+<div class="highlight"><pre><span></span><code><span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
 </code></pre></div>
 
 <p>Bu dosyaların tümünü <code>?</code> özel sembolünü kullanarak tek seferde listelemek için aşağıdaki kodu kullanabiliriz. <code>?ython*</code></p>
@@ -626,32 +650,32 @@ Python_ProgramlamaDili.pdf
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Python for Excel.pdf
-Python_ProgramlamaDili.pdf
-python&#39;da Fonksiyonlar.pdf
+<div class="highlight"><pre><span></span><code><span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
 </code></pre></div>
 
 <p>Gördüğünüz gibi dosyaların baş harfi ne olursa olsun fark etmiyor, 2. harften itibaren 6. harfe kadar <code>ython</code> ibaresinin olması şartı sağlanan dosyalar listeleniyor.</p>
 <p><strong>NOT: Aşağıdaki örneklerde dosya ve klasör yapısı şu şekildedir;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-personel listesi.xlsx
-symmetrical_garden_02_2k.hdr
-Ödeme Durumu.xlsx
-İlçe Kodları.xlsx
-Okunacaklar
-|- MEB Herkes icin Python Programlama Dili.pdf
-|- Notlar.txt
-|- Python for Excel.pdf
-|- Python_ProgramlamaDili.pdf
-|- UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-|- python&#39;da Fonksiyonlar.pdf
-Resimler
-|- 13_Panorama_1280x640.jpg
-|- 360low1.jpg
-|- arakawa-enfuse-handheld.jpg
-|- artthings-enfuse-handheld.jpg
-|- enfuse-handheld-hapala.jpg
-|- enfuse-handheld-hdri.jpg
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">Okunacaklar</span>
+<span class="o">|-</span> <span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">|-</span> <span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="o">|-</span> <span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">|-</span> <span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">|-</span> <span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">|-</span> <span class="n">python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">Resimler</span>
+<span class="o">|-</span> <span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|-</span> <span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|-</span> <span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|-</span> <span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|-</span> <span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="o">|-</span> <span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
 </code></pre></div>
 
 <h4>Örnek 12:</h4>
@@ -667,13 +691,13 @@ Resimler
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-MEB Herkes icin Python Programlama Dili.pdf
-Notlar.txt
-arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
 </code></pre></div>
 
 <h4>Örnek 13:</h4>
@@ -689,8 +713,8 @@ enfuse-handheld-hdri.jpg
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-Notlar.txt
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
 </code></pre></div>
 
 <h4>Örnek 14:</h4>
@@ -706,13 +730,13 @@ Notlar.txt
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>python&#39;da Fonksiyonlar.pdf
-arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
-personel listesi.xlsx
-symmetrical_garden_02_2k.hdr
+<div class="highlight"><pre><span></span><code><span class="n">python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
 </code></pre></div>
 
 <h4>Örnek 15:</h4>
@@ -728,9 +752,9 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code><span class="mf">13</span><span class="n">_Panorama_1280x640</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="mf">360</span><span class="n">low1</span><span class="mf">.</span><span class="n">jpg</span>
-<span class="n">symmetrical_garden_02_2k</span><span class="mf">.</span><span class="n">hdr</span>
+<div class="highlight"><pre><span></span><code><span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
 </code></pre></div>
 
 <h4>Örnek 16:</h4>
@@ -746,23 +770,23 @@ symmetrical_garden_02_2k.hdr
 </code></pre></div>
 
 <p><strong>Çıktı;</strong></p>
-<div class="highlight"><pre><span></span><code>Liste.txt
-MEB Herkes icin Python Programlama Dili.pdf
-Notlar.txt
-Python for Excel.pdf
-Python_ProgramlamaDili.pdf
-UYGULAMALARLA-TEMEL-SEVIYE-PYTHON.pdf
-python&#39;da Fonksiyonlar.pdf
-13_Panorama_1280x640.jpg
-360low1.jpg
-arakawa-enfuse-handheld.jpg
-artthings-enfuse-handheld.jpg
-enfuse-handheld-hapala.jpg
-enfuse-handheld-hdri.jpg
-personel listesi.xlsx
-symmetrical_garden_02_2k.hdr
-Ödeme Durumu.xlsx
-İlçe Kodları.xlsx
+<div class="highlight"><pre><span></span><code><span class="n">Liste</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">MEB</span> <span class="n">Herkes</span> <span class="n">icin</span> <span class="n">Python</span> <span class="n">Programlama</span> <span class="n">Dili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Notlar</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">Python</span> <span class="k">for</span> <span class="n">Excel</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">Python_ProgramlamaDili</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
+<span class="mi">13</span><span class="n">_Panorama_1280x640</span><span class="o">.</span><span class="n">jpg</span>
+<span class="mi">360</span><span class="n">low1</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">arakawa</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">artthings</span><span class="o">-</span><span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hapala</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">enfuse</span><span class="o">-</span><span class="n">handheld</span><span class="o">-</span><span class="n">hdri</span><span class="o">.</span><span class="n">jpg</span>
+<span class="n">personel</span> <span class="n">listesi</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">symmetrical_garden_02_2k</span><span class="o">.</span><span class="n">hdr</span>
+<span class="n">Ödeme</span> <span class="n">Durumu</span><span class="o">.</span><span class="n">xlsx</span>
+<span class="n">İlçe</span> <span class="n">Kodları</span><span class="o">.</span><span class="n">xlsx</span>
 </code></pre></div>
 
 <h3>Kaynaklar;</h3>
