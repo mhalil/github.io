@@ -158,7 +158,8 @@
 <span class="n">Python</span><span class="s1">&#39;da Fonksiyonlar.pdf</span>
 </code></pre></div>
 
-<p>Gördüğünüz gibi sonuç alfabetik değil. Eğer dosya isimlerini alfabetik sıralamak istersek, <code>dosyalar</code> listesini <code>sort()</code> metodu ile alfabetik sıraya dizebiliriz.</p>
+<p>Gördüğünüz gibi sonuç alfabetik değil. Eğer dosya isimlerini alfabetik sıralamak istersek, <code>dosyalar</code> listesini <code>sort()</code> metodu ile alfabetik sıraya dizebiliriz.
+Şunu da unutmamak gerekir ki, Büyükharf ve küçükharf ile başlayan kelimeler kendi içleinde alfabetik olarak sıralanır. İsterseniz sıralama işleminden önce dosya isimlerinin tamamını, <code>lower()</code> , <code>upper()</code> ya da  <code>title()</code> fonksiyonları yardımı ile aynı formata getirebilirsiniz. Sıralama işleminde bilmeniz gereken önemli noktalardan biri de, Türkçe karakterler ile başlayan isimlerin, sıralamanınen sonunda yer alacağıdır. Bunun sebebi, <code>lower()</code> , <code>upper()</code> ya da  <code>title()</code> fonksiyonlarının Türkçe karakterleri doğru şekilde tanımıyor olması diye düşünüyorum.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
 
 <span class="n">dosyalar</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;/home/mhalil/İndirilenler/veriler/*&quot;</span><span class="p">)</span>
@@ -405,7 +406,7 @@
 <tr>
 <td><code>[!]</code></td>
 <td>Köşeli parentez içindeki HERHANGİ bir karekterle BULUNDURMAYAN</td>
-<td><code>[!ABC]*</code> : A, B veya C ile başlamayan dosyalar.</td>
+<td><code>[!ABC]*</code> : A, B ve C ile başlamayan dosyalar</td>
 </tr>
 </tbody>
 </table>
@@ -468,6 +469,7 @@
 
 <h4>Örnek 3:</h4>
 <p>Büyük harf ile BAŞLAYAN dosyaları listeleyelim. <code>[A-Z]*</code>
+<strong>Önemli:</strong> <code>[A-Z]</code> ifadesi, Türkçe karakterleri kapsamaz. Yani <code>Ü Ğ İ Ş Ç Ö</code> harfleri <code>[A-Z]</code> ifadesinin içinde yoktur.
 <strong>Kod;</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
 
@@ -488,6 +490,8 @@
 <span class="n">UYGULAMALARLA</span><span class="o">-</span><span class="n">TEMEL</span><span class="o">-</span><span class="n">SEVIYE</span><span class="o">-</span><span class="n">PYTHON</span><span class="o">.</span><span class="n">pdf</span>
 </code></pre></div>
 
+<p>Çıktıyı incelerseniz, <strong>Ödeme Durumu.xlsx</strong> ve <strong>İlçe Kodları.xlsx</strong> dosya isimlerinin, Büyükharfle başlamış olmasına rağmen çıktıda yer almadığını göreceksiniz. Bunların da görüntülenmesini sağlamak için bu karakterleri köşeli parantez içine eklemeliyiz. Kodumuş aşağıdaki şekilde olmalı: </p>
+<p><code>dosyalar = glob.glob("/home/mhalil/İndirilenler/veriler/[A-ZÜĞİŞÇÖ]*")</code></p>
 <h4>Örnek 4:</h4>
 <p>Büyük harf ile BAŞLAYAN ancak baş harfi <code>A</code> ile <code>N</code> harfleri ARASINDA olan dosyaları listeleyelim. <code>[A-N]*</code></p>
 <p><strong>Kod;</strong></p>
@@ -577,7 +581,7 @@
 </code></pre></div>
 
 <h4>Örnek 8:</h4>
-<p>Saıyı ile BAŞLAMAYAN <code>JPG</code> dosyaları listeleyelim. <code>[!0-9]*.jpg</code>
+<p>Sayı ile BAŞLAMAYAN <code>JPG</code> dosyaları listeleyelim. <code>[!0-9]*.jpg</code>
 <strong>Kod;</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">glob</span>
 
