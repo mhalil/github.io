@@ -274,7 +274,7 @@ sayfaya ekleyeceğim.</p>
 Aşağıdaki örneklerde DataFrame fonksiyonu yerine Pandas fonksiyonunu 
 kullanıyoruz. Bu nedenle, <code>data=</code> parameresini belirtmemiz gerekiyor. Yöntemi doğrudan DataFrame'e uygularsak (örneğin: <code>df.pivot_table(...)</code>), bu parametre <code>data= df</code> şeklinde ima edilmiş olur.</p>
 <div class="highlight"><pre><span></span><code><span class="n">sales_by_region</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;Region&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">pivot</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sales_by_region</span><span class="p">)</span>
 </code></pre></div>
 
 <table>
